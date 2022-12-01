@@ -8,9 +8,15 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]    
+    
+env:
+  my-first-var: "my-first"
 
 jobs:
   build:
+  
+    env:
+      my-job-first-var: "my-job-first"
 
     runs-on: ubuntu-latest
 
@@ -28,3 +34,30 @@ jobs:
     - name: The job has skipped
       run: echo Hello Skipped
       
+    - name: The job with vars
+      run: echo "Hello Vars $MY_STEP_FIRST_VAR"
+      env:
+        MY_STEP_FIRST_VAR: "my-step-first" 
+        
+    - name: The job will send vars
+      run: echo "VAR_SENT=MY_FIRST_SENT_VAR" >> $GITHUB_ENV
+      
+    - name: The job will print vars
+      if: ${{ failure() && steps.failedstep.conclusion == 'failure' }}
+      run: |
+        echo $VAR_SENT
+        echo ${{ env.my-first-var}}
+        echo ${{ env.my-job-first-var}}
+        
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: My dependency job
+      run: echo dependency job
+
+      
+
