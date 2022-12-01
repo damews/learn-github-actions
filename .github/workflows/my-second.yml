@@ -1,0 +1,10 @@
+name: my-second
+
+workflow_call:
+
+job:
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+    
+    - run: echo MY CALLED WORKFLOW
