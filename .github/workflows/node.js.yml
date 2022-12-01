@@ -47,6 +47,9 @@ jobs:
     
     - name: My dependency job
       run: echo dependency job
+      
+  bootstrap_workflow:
+    uses: ./.github/workflows/my-second.yml
 
       
 
