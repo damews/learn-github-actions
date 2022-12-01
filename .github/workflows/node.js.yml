@@ -22,14 +22,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    
-    - name: My failure step
-      id: failedstep
-      run: asdasd
-    
-    - name: The job has skipped
-      run: echo Hello Skipped
-      
+  
     - name: The job with vars
       run: echo "Hello Vars $MY_STEP_FIRST_VAR"
       env:
