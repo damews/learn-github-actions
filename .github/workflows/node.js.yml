@@ -27,10 +27,6 @@ jobs:
       id: failedstep
       run: asdasd
     
-    - name: The job has failed
-      if: ${{ failure() && steps.failedstep.conclusion == 'failure' }}
-      run: echo Hello Failed
-      
     - name: The job has skipped
       run: echo Hello Skipped
       
@@ -43,9 +39,9 @@ jobs:
       run: echo "VAR_SENT=MY_FIRST_SENT_VAR" >> $GITHUB_ENV
       
     - name: The job will print vars
-      if: ${{ failure() && steps.failedstep.conclusion == 'failure' }}
       run: |
         echo $VAR_SENT
+        echo ${{ env.VAR_SENT }}
         echo ${{ env.my-first-var}}
         echo ${{ env.my-job-first-var}}
         
