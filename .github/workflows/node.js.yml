@@ -22,7 +22,7 @@ jobs:
       run: asdasd
     
     - name: The job has failed
-      if: ${{ failure() && step.failedstep.conclusion == 'failure' }}
+      if: ${{ failure() && steps.failedstep.conclusion == 'failure' }}
       run: echo Hello Failed
       
     - name: The job has skipped
