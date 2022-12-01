@@ -1,8 +1,9 @@
 name: my-second
 
-workflow_call:
+on:
+  workflow_call:
 
-job:
+jobs:
   bootstrap:
     runs-on: ubuntu-latest
     steps:
