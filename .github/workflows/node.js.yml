@@ -16,15 +16,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js 
-      uses: actions/setup-node@v3
-      with:
-        node-version: latest
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm testssdasda
+    
+    - name: My failure step
+      id: failedstep
+      run: asdasd
+    
     - name: The job has failed
-      run: echo Hello if Yes
-      if: ${{ failure() }}
+      if: ${{ failure() && step.failedstep.conclusion == 'failure' }}
+      run: echo Hello Failed
+      
+    - name: The job has skipped
+      run: echo Hello Skipped
       
